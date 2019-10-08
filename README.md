@@ -1,5 +1,5 @@
 # arduino_lamp
-В проекте использованы такие инструменты как:
+В проекте использованы такие инструменты:
 1. Visual Studio Code.
 2. Расширение к Visual Studio Code - PlatformIO.
 3. Arduino Pro Mini.
