@@ -12,7 +12,7 @@ unsigned long last_time;
 
 //переменные для флагов
 int value = 0;
-int regim = 0;
+int mode = 0;
 int n = 0;
 
 void setup() {
@@ -36,12 +36,12 @@ buttonState = digitalRead(pin_button);
     */
     if(buttonState == LOW && value == 0)      
     {                                              
-      regim++;
+      mode++;
       value = 1;
       
-      if(regim > 3) //Если regim больше 3, то сбрасываем все на 0, что бы зациклить
+      if(mode > 3) //Если regim больше 3, то сбрасываем все на 0, что бы зациклить
         {
-          regim = 0;
+          mode = 0;
         }
     }
     //сброс value
@@ -52,7 +52,7 @@ buttonState = digitalRead(pin_button);
 
 /*-------Выполнение режимов----------*/
 /*-------Первый режим--------*/
-    if(regim == 1 && n == 0)
+    if(mode == 1 && n == 0)
     {
       //Запуск таймера
       //Медленное разгорание led
@@ -69,20 +69,20 @@ buttonState = digitalRead(pin_button);
       Проверка. Прошло ли 30 мин после 1 режима. Если прошло, то выключаем led
     
     */
-      if((millis() - last_time >(unsigned long) 30 * 60 * 1000) && regim == 1)
+      if((millis() - last_time >(unsigned long) 30 * 60 * 1000) && mode == 1)
       {
         for(int i = 255; i >= 0; i--)
         {
          analogWrite(led, i);
          delay(30);
         }
-       regim = 0;
+       mode = 0;
        n = 0;
       }
 
 
 /*-------Второй режим--------*/
-      if(regim == 2 && n == 1)
+      if(mode == 2 && n == 1)
       {  
         for(int i = 255; i >= 125; i--)
         {
@@ -93,19 +93,19 @@ buttonState = digitalRead(pin_button);
       }
    
 
-      if((millis() - last_time >(unsigned long)30 * 60 * 1000) && regim == 2)
+      if((millis() - last_time >(unsigned long)30 * 60 * 1000) && mode == 2)
       {
         for(int i = 125; i >= 0; i--)
         {
           analogWrite(led, i);
           delay(30);
         }
-        regim = 0;
+        mode = 0;
         n = 0;
       }
       
 /*-------Третий режим. Выключение--------*/
-      if(regim == 3 && n == 2)
+      if(mode == 3 && n == 2)
       {  
         for(int i = 125; i >= 0; i--)
         {
