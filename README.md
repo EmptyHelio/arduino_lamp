@@ -1,4 +1,8 @@
 # arduino_lamp
+В проекте использованы такие инструменты как:
+1. Visual Studio Code.
+2. Расширение к Visual Studio Code - PlatformIO.
+3. Arduino Pro Mini.
 
 Светильник с режимами.
 
